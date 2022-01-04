@@ -248,17 +248,15 @@ function toArrayOfSquares(arr) {
  *   [ 0, 0, 0, 0, 0]         => [ 0, 0, 0, 0, 0]
  *   [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ] => [ 1, 3, 6, 10, 15, 21, 28, 36, 45, 55 ]
  */
-function getMovingSum(/* arr */) {
-  throw new Error('Not implemented');
-  // const newArr = [];
-  // arr.forEach((el, i) => {
-  //   if (i === 0) {
-  //     newArr.push(el);
-  //   } else {
-  //     newArr.push(el + newArr[i - 1]);
-  //   }
-  // });
-  // return newArr;
+function getMovingSum(arr) {
+  // throw new Error('Not implemented');
+  const newArr = arr.map((el, i) => {
+    if (i === 0) {
+      return el;
+    }
+    return arr.slice(0, i + 1).reduce((a, b) => a + b);
+  });
+  return newArr;
 }
 
 /**
@@ -272,8 +270,9 @@ function getMovingSum(/* arr */) {
  * [ 'a', 'b', 'c' , null ]  => [ "b", null ]
  * [ "a" ] => []
  */
-function getSecondItems(/* arr */) {
-  throw new Error('Not implemented');
+function getSecondItems(arr) {
+  // throw new Error('Not implemented');
+  return arr.filter((el, i) => i % 2 !== 0);
 }
 
 
@@ -291,8 +290,16 @@ function getSecondItems(/* arr */) {
  *  [ 'a', 'b', 'c', null ] => [ 'a', 'b','b', 'c','c','c',  null,null,null,null ]
  *  [ 1,2,3,4,5 ] => [ 1, 2,2, 3,3,3, 4,4,4,4, 5,5,5,5,5 ]
  */
-function propagateItemsByPositionIndex(/* arr */) {
-  throw new Error('Not implemented');
+function propagateItemsByPositionIndex(arr) {
+  // throw new Error('Not implemented');
+  if (arr.length <= 1) {
+    return arr;
+  }
+  const newArr = arr.map((el, i) => {
+    const array = new Array(i + 1);
+    return array.fill(el);
+  });
+  return newArr.flat();
 }
 
 
@@ -309,8 +316,10 @@ function propagateItemsByPositionIndex(/* arr */) {
  *   [ 1,2,3,4,5,6,7,8,9,10 ] => [ 10, 9, 8 ]
  *   [ 10, 10, 10, 10 ] => [ 10, 10, 10 ]
  */
-function get3TopItems(/* arr */) {
-  throw new Error('Not implemented');
+function get3TopItems(arr) {
+  // throw new Error('Not implemented');
+  arr.sort((a, b) => b - a);
+  return arr.slice(0, 3);
 }
 
 
@@ -327,8 +336,10 @@ function get3TopItems(/* arr */) {
  *   [ null, 1, 'elephant' ] => 1
  *   [ 1, '2' ] => 1
  */
-function getPositivesCount(/* arr */) {
-  throw new Error('Not implemented');
+function getPositivesCount(arr) {
+  // throw new Error('Not implemented');
+  const newArr = arr.filter((el) => typeof el === 'number' && el > 0);
+  return newArr.length;
 }
 
 /**
